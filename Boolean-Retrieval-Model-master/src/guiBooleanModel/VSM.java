@@ -85,7 +85,7 @@ public class VSM {
         }        
     }
      
-         private ArrayList<Double> EuclideanDistance(PositionalIndex PI) {
+        private ArrayList<Double> EuclideanDistance(PositionalIndex PI) {
         getTFIDF(PI);
         double Distance;
         ArrayList<Double> NormVec = new ArrayList<Double>();
@@ -145,6 +145,7 @@ public class VSM {
                 Ranks.add(this.docScores.indexOf(score));
             }
         }
+        System.out.println("Ranks" + Ranks);
         return Ranks;
     }  
 

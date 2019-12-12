@@ -239,19 +239,27 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7MouseClicked
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        String sQuery = jTextField1.getText();
+    String sQuery = jTextField1.getText();
         ArrayList<Integer> result = new ArrayList<Integer>();
         result = vsm.rankedDoc(sQuery, q, pi);
-        
+//                System.out.println("result" + result);
+//                                System.out.println("result" + result.size() );
+
+
+        if(result == null)
+        {
+            JOptionPane.showMessageDialog(null, "No Results Exist For Such Query!");
+            return;
+        }
         if ( result.size() > 0 ) {
-            ResultTextPanel rtp = new ResultTextPanel(result, collection, sQuery);
+            ResultTextPanel rtp = new ResultTextPanel(result, collection, sQuery, 1);
             rtp.setVisible(true);
             JOptionPane.showMessageDialog(null, result.size()+ " " + "Ranked Documents !");
-        } else JOptionPane.showMessageDialog(null, "No Results For Such Query!");
+        } else JOptionPane.showMessageDialog(null, "No Results For Such Query!");    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+
+        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

@@ -3,8 +3,10 @@ package guiBooleanModel;
 import java.util.ArrayList;
 
 public class ResultTextPanel extends javax.swing.JFrame {
+//    private static String[] documentNumber;
+    public ArrayList<String> documents;
     private static String[] documentNumber;
-    
+
     private static String query = new String();
     private static ArrayList<Integer> result = new ArrayList<Integer>();
     private static ArrayList<String> collection = new ArrayList<String>();
@@ -18,13 +20,52 @@ public class ResultTextPanel extends javax.swing.JFrame {
         query = sQuery;
         collection = document;
     
-        documentNumber = new String[result.size()];
+//        documentNumber = new String[result.size()];
+        documents = new ArrayList<String>();
         for ( int i=0; i<result.size(); ++i ) {
             String temp = collection.get(result.get(i)-1);
             String doc = "Document# " + (collection.indexOf(temp)+1) + " - ";
             String[] docID = temp.split(" ");
-            documentNumber[i] = doc + docID[0];
+//            documentNumber[i] = doc + docID[0];
+            documents.add(doc + docID[0]);
         }
+        documentNumber = new String[documents.size()];
+        for ( int i=0; i<documents.size(); ++i ) {
+            documentNumber[i]=documents.get(i);
+        }
+
+
+        
+        initComponents();
+    }
+        public ResultTextPanel( ArrayList<Integer> list, ArrayList<String> document, String sQuery , int flag) {
+        result = list;
+        query = sQuery;
+        collection = document;
+    
+//        documentNumber = new String[result.size()];
+        documents = new ArrayList<String>();
+
+        if(flag == 1)
+        {
+            for ( int i=0; i<result.size(); ++i ) {
+                if(result.get(i) != 0)
+                {
+                    String temp = collection.get(result.get(i));
+                    String doc = "Document# " + (collection.indexOf(temp)) + " - ";
+                    String[] docID = temp.split(" ");
+//                    documentNumber[i] = doc + docID[0];
+                    documents.add(doc + docID[0]);
+
+                }
+   
+            }
+        }
+        documentNumber = new String[documents.size()];
+        for ( int i=0; i<documents.size(); ++i ) {
+            documentNumber[i]=documents.get(i);
+        }
+
         
         initComponents();
     }
@@ -65,6 +106,11 @@ public class ResultTextPanel extends javax.swing.JFrame {
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -118,6 +164,10 @@ public class ResultTextPanel extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     public static void main(String args[]) {
         try {
